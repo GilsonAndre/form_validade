@@ -7,5 +7,6 @@ class Strings {
   // static const hint = '';
   // static const hint = '';
   // static const hint = '';
+  static const buttonContinue = 'Continue';
 
 }
