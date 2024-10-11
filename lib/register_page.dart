@@ -31,15 +31,6 @@ class RegisterPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 60,
                   child: OutlinedButton(
-                    style: const ButtonStyle(
-                      
-                      textStyle: WidgetStatePropertyAll<TextStyle>(
-                        TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         print('Valid');
