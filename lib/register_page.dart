@@ -2,29 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:form_validade/resources/strings.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
-
+  RegisterPage({super.key});
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         title: const Text(Strings.register),
       ),
       body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: Form(
+            key: formKey,
             child: Column(
               children: [
                 const SizedBox(height: 20),
                 TextFormField(
-                  autocorrect: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
                     hintText: Strings.hintName,
                     label: Text(Strings.hintName),
                   ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Nome não pode ser vazio';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
@@ -32,13 +37,12 @@ class RegisterPage extends StatelessWidget {
                   height: 60,
                   child: OutlinedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        print('Valid');
-                      } else {
-                        print('Invalid');
-                      }
+                      formKey.currentState!.validate();
                     },
-                    child: const Text(Strings.buttonContinue, style: TextStyle(color: Colors.black),),
+                    child: const Text(
+                      Strings.buttonContinue,
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
               ],

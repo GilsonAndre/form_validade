@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     final ThemeApp themeApp = ThemeApp();
     return MaterialApp(
       theme: themeApp.themeLight,
-      home: const RegisterPage(),
+      home:  RegisterPage(),
     );
   }
 }
