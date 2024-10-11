@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_validade/register_page.dart';
+import 'package:form_validade/resources/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: RegisterPage(),
+    final ThemeApp themeApp = ThemeApp();
+    return MaterialApp(
+      theme: themeApp.themeLight,
+      home: const RegisterPage(),
     );
   }
 }
