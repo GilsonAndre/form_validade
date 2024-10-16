@@ -20,6 +20,7 @@ class Strings {
   static const brHintSenha = 'Senha';
   static const brButtonContinuar = 'Continuar';
 
+  //empty errors
   static const emptyName = 'Name can\'t be empty';
   static const emptyCpf = 'CPF can\'t be empty';
   static const emptyPhone = 'Phone can\'t be empty';
@@ -33,4 +34,16 @@ class Strings {
   static const brEmptyDataNascimento = 'Data de Nascimento não pode ser vazio';
   static const brEmptyEmail = 'Email não pode ser vazio';
   static const brEmptySenha = 'Senha não pode ser vazio';
+
+  static const invalidErrorsCpf = 'Invalid CPF';
+  static const invalidErrorsPhone = 'Invalid Phone number';
+  static const invalidErrorsDateBirth = 'Invalid Date Birth';
+  static const invalidErrorsEmail = 'Invalid Email';
+  static const invalidErrorsPassword = '8 characters and at least one capital letter and one number';
+
+  static const brInvalidErrorsCpf = 'CPF invalido';
+  static const brIinvalidErrorsTelefone = 'Telefone invalido';
+  static const brInvalidErrorsDataNascimento = 'Data de Nascimento Invalido';
+  static const brInvalidErrorsEmail = 'Email invalido';
+  static const brInvalidErrorsSenha = 'Deve ter 8 letras e uma letra maiuscula e um numero';
 }

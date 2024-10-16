@@ -131,7 +131,7 @@ class RegisterPage extends StatelessWidget {
                       return Strings.emptyPassword;
                     }
                     if (!regexPassword.hasMatch(value)) {
-                      return '8 characters and at least one capital letter and one number';
+                      return Strings.invalidErrorsPassword;
                     }
                     return null;
                   },
