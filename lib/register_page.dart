@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_validade/bloc/register_bloc.dart';
 import 'package:form_validade/resources/strings.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -28,142 +30,164 @@ class RegisterPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(Strings.register),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: const InputDecoration(
-                    hintText: Strings.hintName,
-                    label: Text(Strings.hintName),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return Strings.emptyName;
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    hintText: Strings.hintBrazilianCpf,
-                    label: Text(Strings.hintBrazilianCpf),
-                  ),
-                  inputFormatters: [maskBrazilianCpf],
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return Strings.emptyCpf;
-                    }
-                    if (value.length < 14) {
-                      return Strings.invalidErrorsCpf;
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    hintText: Strings.hintPhone,
-                    label: Text(Strings.hintPhone),
-                  ),
-                  inputFormatters: [maskBrazilianPhone],
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return Strings.emptyPhone;
-                    }
-                    if (value.length < 14) {
-                      return Strings.invalidErrorsPhone;
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  keyboardType: TextInputType.datetime,
-                  decoration: const InputDecoration(
-                    hintText: Strings.hintDateBirth,
-                    label: Text(Strings.hintDateBirth),
-                  ),
-                  inputFormatters: [maskDateTime],
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return Strings.emptyDateBirth;
-                    }
-                    if (!regexDateTime.hasMatch(value)) {
-                      return Strings.invalidErrorsDateBirth;
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    hintText: Strings.hintEmail,
-                    label: Text(Strings.hintEmail),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return Strings.emptyEmail;
-                    }
-                    if (!regexEmail.hasMatch(value)) {
-                      return Strings.invalidErrorsEmail;
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: const InputDecoration(
-                    hintText: Strings.hintPassword,
-                    label: Text(Strings.hintPassword),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return Strings.emptyPassword;
-                    }
-                    if (!regexPassword.hasMatch(value)) {
-                      return Strings.invalidErrorsPassword;
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 60,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      formKey.currentState!.validate();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(''),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      Strings.buttonContinue,
-                      style: TextStyle(color: Colors.black),
+      body: BlocBuilder<RegisterBloc, RegisterState>(
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: const InputDecoration(
+                        hintText: Strings.hintName,
+                        label: Text(Strings.hintName),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return Strings.emptyName;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        context.read<RegisterBloc>().add(NameEvent(value));
+                      },
                     ),
-                  ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: Strings.hintBrazilianCpf,
+                        label: Text(Strings.hintBrazilianCpf),
+                      ),
+                      inputFormatters: [maskBrazilianCpf],
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return Strings.emptyCpf;
+                        }
+                        if (value.length < 14) {
+                          return Strings.invalidErrorsCpf;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        context.read<RegisterBloc>().add(CpfEvent(value));
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: Strings.hintPhone,
+                        label: Text(Strings.hintPhone),
+                      ),
+                      inputFormatters: [maskBrazilianPhone],
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return Strings.emptyPhone;
+                        }
+                        if (value.length < 14) {
+                          return Strings.invalidErrorsPhone;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        context.read<RegisterBloc>().add(PhoneEvent(value));
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      keyboardType: TextInputType.datetime,
+                      decoration: const InputDecoration(
+                        hintText: Strings.hintDateBirth,
+                        label: Text(Strings.hintDateBirth),
+                      ),
+                      inputFormatters: [maskDateTime],
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return Strings.emptyDateBirth;
+                        }
+                        if (!regexDateTime.hasMatch(value)) {
+                          return Strings.invalidErrorsDateBirth;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        context.read<RegisterBloc>().add(DateBirthEvent(value));
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        hintText: Strings.hintEmail,
+                        label: Text(Strings.hintEmail),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return Strings.emptyEmail;
+                        }
+                        if (!regexEmail.hasMatch(value)) {
+                          return Strings.invalidErrorsEmail;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        context.read<RegisterBloc>().add(EmailEvent(value));
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: const InputDecoration(
+                        hintText: Strings.hintPassword,
+                        label: Text(Strings.hintPassword),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return Strings.emptyPassword;
+                        }
+                        if (!regexPassword.hasMatch(value)) {
+                          return Strings.invalidErrorsPassword;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        context.read<RegisterBloc>().add(PasswordEvent(value));
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: 60,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          formKey.currentState!.validate();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(''),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          Strings.buttonContinue,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

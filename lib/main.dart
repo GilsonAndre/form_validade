@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_validade/bloc/register_bloc.dart';
 import 'package:form_validade/register_page.dart';
 import 'package:form_validade/resources/theme.dart';
 
@@ -12,9 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeApp themeApp = ThemeApp();
-    return MaterialApp(
-      theme: themeApp.themeLight,
-      home:  RegisterPage(),
+    return BlocProvider(
+      create: (context) => RegisterBloc(),
+      child: MaterialApp(
+        theme: themeApp.themeLight,
+        home: RegisterPage(),
+      ),
     );
   }
 }
