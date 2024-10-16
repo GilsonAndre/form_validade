@@ -14,11 +14,16 @@ class RegisterPage extends StatelessWidget {
     MaskTextInputFormatter maskBrazilianPhone =
         MaskTextInputFormatter(mask: '(##)#####-####');
 
-    RegExp regexEmail = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    RegExp regexPassword =
-        RegExp(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$');
-    RegExp regexDateTime =
-        RegExp(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}$');
+    RegExp regexEmail = RegExp(
+      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+    );
+    RegExp regexPassword = RegExp(
+      r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$',
+    );
+    RegExp regexDateTime = RegExp(
+      r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}$',
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(Strings.register),
@@ -58,7 +63,7 @@ class RegisterPage extends StatelessWidget {
                       return Strings.emptyCpf;
                     }
                     if (value.length < 14) {
-                      return 'Invalid CPF number';
+                      return Strings.invalidErrorsCpf;
                     }
                     return null;
                   },
@@ -77,7 +82,7 @@ class RegisterPage extends StatelessWidget {
                       return Strings.emptyPhone;
                     }
                     if (value.length < 14) {
-                      return 'Invalid phone number';
+                      return Strings.invalidErrorsPhone;
                     }
                     return null;
                   },
@@ -96,7 +101,7 @@ class RegisterPage extends StatelessWidget {
                       return Strings.emptyDateBirth;
                     }
                     if (!regexDateTime.hasMatch(value)) {
-                      return 'Invalid date birth';
+                      return Strings.invalidErrorsDateBirth;
                     }
                     return null;
                   },
@@ -114,7 +119,7 @@ class RegisterPage extends StatelessWidget {
                       return Strings.emptyEmail;
                     }
                     if (!regexEmail.hasMatch(value)) {
-                      return 'Invalid Email';
+                      return Strings.invalidErrorsEmail;
                     }
                     return null;
                   },
