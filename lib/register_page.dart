@@ -148,6 +148,11 @@ class RegisterPage extends StatelessWidget {
                   child: OutlinedButton(
                     onPressed: () {
                       formKey.currentState!.validate();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(''),
+                        ),
+                      );
                     },
                     child: const Text(
                       Strings.buttonContinue,
