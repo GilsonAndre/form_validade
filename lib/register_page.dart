@@ -57,6 +57,9 @@ class RegisterPage extends StatelessWidget {
                     if (value!.isEmpty) {
                       return Strings.emptyCpf;
                     }
+                    if (value.length < 14) {
+                      return 'Invalid CPF number';
+                    }
                     return null;
                   },
                 ),
@@ -73,6 +76,9 @@ class RegisterPage extends StatelessWidget {
                     if (value!.isEmpty) {
                       return Strings.emptyPhone;
                     }
+                    if (value.length < 14) {
+                      return 'Invalid phone number';
+                    }
                     return null;
                   },
                 ),
@@ -81,16 +87,16 @@ class RegisterPage extends StatelessWidget {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.datetime,
                   decoration: const InputDecoration(
-                    hintText: Strings.hintDateTime,
-                    label: Text(Strings.hintDateTime),
+                    hintText: Strings.hintDateBirth,
+                    label: Text(Strings.hintDateBirth),
                   ),
                   inputFormatters: [maskDateTime],
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return Strings.emptyDateTime;
+                      return Strings.emptyDateBirth;
                     }
                     if (!regexDateTime.hasMatch(value)) {
-                      return '';
+                      return 'Invalid date birth';
                     }
                     return null;
                   },
@@ -108,7 +114,7 @@ class RegisterPage extends StatelessWidget {
                       return Strings.emptyEmail;
                     }
                     if (!regexEmail.hasMatch(value)) {
-                      return '1';
+                      return 'Invalid Email';
                     }
                     return null;
                   },
@@ -125,7 +131,7 @@ class RegisterPage extends StatelessWidget {
                       return Strings.emptyPassword;
                     }
                     if (!regexPassword.hasMatch(value)) {
-                      return '';
+                      return '8 characters and at least one capital letter and one number';
                     }
                     return null;
                   },
