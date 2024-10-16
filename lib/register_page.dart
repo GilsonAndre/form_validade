@@ -39,7 +39,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Nome não pode ser vazio';
+                      return Strings.emptyName;
                     }
                     return null;
                   },
@@ -55,7 +55,7 @@ class RegisterPage extends StatelessWidget {
                   inputFormatters: [maskBrazilianCpf],
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Nome não pode ser vazio';
+                      return Strings.emptyCpf;
                     }
                     return null;
                   },
@@ -71,7 +71,7 @@ class RegisterPage extends StatelessWidget {
                   inputFormatters: [maskBrazilianPhone],
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Nome não pode ser vazio';
+                      return Strings.emptyPhone;
                     }
                     return null;
                   },
@@ -87,7 +87,7 @@ class RegisterPage extends StatelessWidget {
                   inputFormatters: [maskDateTime],
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Nome não pode ser vazio';
+                      return Strings.emptyDateTime;
                     }
                     if (!regexDateTime.hasMatch(value)) {
                       return '';
@@ -105,7 +105,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Nome não pode ser vazio';
+                      return Strings.emptyEmail;
                     }
                     if (!regexEmail.hasMatch(value)) {
                       return '1';
@@ -122,7 +122,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Nome não pode ser vazio';
+                      return Strings.emptyPassword;
                     }
                     if (!regexPassword.hasMatch(value)) {
                       return '';

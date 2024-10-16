@@ -30,7 +30,7 @@ class Strings {
   static const brEmptyNome = 'Nome não pode ser vazio';
   static const brEmptyCpf = 'CPF não pode ser vazio';
   static const brEmptyTelefone = 'Telefone não pode ser vazio';
-  static const brEmptyDataNascimento = 'Telefone não pode ser vazio';
-  static const brEmptyEmail ='Telefone não pode ser vazio';
-  static const brEmptySenha = 'Telefone não pode ser vazio';
+  static const brEmptyDataNascimento = 'Data de Nascimento não pode ser vazio';
+  static const brEmptyEmail ='Email não pode ser vazio';
+  static const brEmptySenha = 'Senha não pode ser vazio';
 }
