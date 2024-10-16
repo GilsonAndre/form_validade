@@ -1,7 +1,8 @@
 class Strings {
   static const register = 'Register';
+  static const brRegistrar = 'Registrar';
 
-  //HINT TEXT in english
+  //HINT TEXT english
   static const hintName = 'Name';
   static const hintBrazilianCpf = 'CPF';
   static const hintPhone = 'Phone';
@@ -11,12 +12,25 @@ class Strings {
   static const buttonContinue = 'Continue';
 
   //Nome em portugues
-  static const hintNome = 'Nome';
-  static const hintCpf = 'CPF';
-  static const hintTelefone = 'Telefone';
-  static const hintDateNascimento = 'Date de Nascimento';
-  static const hintEmaill = 'Email';
-  static const hintSenha = 'Senha';
-  static const buttonContinuar = 'Continuar';
+  static const brHintNome = 'Nome';
+  static const brHintCpf = 'CPF';
+  static const brHintTelefone = 'Telefone';
+  static const brHintDateNascimento = 'Date de Nascimento';
+  static const brHintEmail = 'Email';
+  static const brHintSenha = 'Senha';
+  static const brButtonContinuar = 'Continuar';
 
+  static const emptyName = 'Name can\'t be empty';
+  static const emptyCpf = 'CPF can\'t be empty';
+  static const emptyPhone = 'Phone can\'t be empty';
+  static const emptyDateTime = 'Date time can\'t be empty';
+  static const emptyEmail = 'Email can\'t be empty';
+  static const emptyPassword = 'Password can\'t be empty';
+
+  static const brEmptyNome = 'Nome não pode ser vazio';
+  static const brEmptyCpf = 'CPF não pode ser vazio';
+  static const brEmptyTelefone = 'Telefone não pode ser vazio';
+  static const brEmptyDataNascimento = 'Telefone não pode ser vazio';
+  static const brEmptyEmail ='Telefone não pode ser vazio';
+  static const brEmptySenha = 'Telefone não pode ser vazio';
 }
